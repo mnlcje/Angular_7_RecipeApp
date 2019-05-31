@@ -8,6 +8,7 @@ templateUrl:'./recipe-item.component.html'
 export class RecipeIemComponent{
     
     @Input() recipe:Recipe;
+    @Input() curRecipeIndex : number;
 
     constructor()
     {
