@@ -1,9 +1,15 @@
 import { EventEmitter } from '@angular/core';
 import { Ingredient } from '../shared/ingredient.model';
+import { Subject } from 'rxjs';
 
 export class ShoppingListService
 {
-    ingreedientsAdded = new EventEmitter<Ingredient[]>();
+    //Eventemitter Approach for cross Componenet Communication
+    //ingredientsAdded = new EventEmitter<Ingredient[]>();
+
+    //Subject Approach for cross Componenet Communication
+    ingredientsAdded = new Subject<Ingredient[]>();
+
 
     private ingredients : Ingredient[] = [
         new Ingredient('Apples', 5),
@@ -19,15 +25,22 @@ export class ShoppingListService
       public addIngredient(ingredient: Ingredient)
       {
           this.ingredients.push(ingredient);
-          //Emit a copy of the updated ingredient array
-          this.ingreedientsAdded.emit(this.ingredients.slice());
+          //Eventemitter Approach - Emit a copy of the updated ingredient array
+          //this.ingredientsAdded.emit(this.ingredients.slice());
+
+          //Subject Approach - Emit a copy of the updated ingredient array
+          this.ingredientsAdded.next(this.ingredients.slice());
+      
       }
 
       public addIngreddients(ingredients:Ingredient[])
       {
           this.ingredients.push(...ingredients);
-          //Emit a copy of the updated ingredient array
-          this.ingreedientsAdded.emit(this.ingredients.slice());      
+          //Eventemitter Approach - Emit a copy of the updated ingredient array
+          //this.ingredientsAdded.emit(this.ingredients.slice());  
+          
+          //Subject Approach - Emit a copy of the updated ingredient array
+          this.ingredientsAdded.next(this.ingredients.slice());          
       }
     
 }

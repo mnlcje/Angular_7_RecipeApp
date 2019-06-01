@@ -29,3 +29,11 @@ To get more help on the Angular CLI use `ng help` or go check out the [Angular C
 
 
 --type ng new in node commmand prompt to create project in ng7
+
+--Subject and observables
+https://javascript.tutorialhorizon.com/2017/03/23/rxjs-subject-vs-observable/
+
+--Various ways of Cross Component Communication
+https://medium.com/@manivel45/event-emitter-vs-subject-cross-component-communication-8934376605e1
+
+
