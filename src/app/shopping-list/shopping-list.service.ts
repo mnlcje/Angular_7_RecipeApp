@@ -1,6 +1,6 @@
 import { EventEmitter } from '@angular/core';
-import { Ingredient } from '../shared/ingredient.model';
 import { Subject } from 'rxjs';
+import { Ingredient } from '../shared/ingredient.model';
 
 export class ShoppingListService
 {
@@ -8,8 +8,8 @@ export class ShoppingListService
     //ingredientsAdded = new EventEmitter<Ingredient[]>();
 
     //Subject Approach for cross Componenet Communication
-    ingredientsAdded = new Subject<Ingredient[]>();
-
+    ingredientsChanged = new Subject<Ingredient[]>();
+    ingredientSelectedForEditing = new Subject<number>();
 
     private ingredients : Ingredient[] = [
         new Ingredient('Apples', 5),
@@ -22,6 +22,11 @@ export class ShoppingListService
           return this.ingredients.slice();
       }
 
+      public getingredientsById(index:number)
+      {
+          return this.ingredients[index];
+      }
+
       public addIngredient(ingredient: Ingredient)
       {
           this.ingredients.push(ingredient);
@@ -29,8 +34,7 @@ export class ShoppingListService
           //this.ingredientsAdded.emit(this.ingredients.slice());
 
           //Subject Approach - Emit a copy of the updated ingredient array
-          this.ingredientsAdded.next(this.ingredients.slice());
-      
+          this.ingredientsChanged.next(this.ingredients.slice());      
       }
 
       public addIngreddients(ingredients:Ingredient[])
@@ -40,7 +44,19 @@ export class ShoppingListService
           //this.ingredientsAdded.emit(this.ingredients.slice());  
           
           //Subject Approach - Emit a copy of the updated ingredient array
-          this.ingredientsAdded.next(this.ingredients.slice());          
+          this.ingredientsChanged.next(this.ingredients.slice());          
+      }
+
+      public updateIngredient(selIndex:number,editedIngredient:Ingredient)
+      {
+          this.ingredients[selIndex] = editedIngredient;
+          this.ingredientsChanged.next(this.ingredients.slice());
+      }
+
+      public deleteIngredient(selIndex:number)
+      {
+          this.ingredients.splice(selIndex,1);
+          this.ingredientsChanged.next(this.ingredients.slice());
       }
     
 }
