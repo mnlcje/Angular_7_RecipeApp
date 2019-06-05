@@ -30,10 +30,20 @@ To get more help on the Angular CLI use `ng help` or go check out the [Angular C
 
 --type ng new in node commmand prompt to create project in ng7
 
+
 --Subject and observables
 https://javascript.tutorialhorizon.com/2017/03/23/rxjs-subject-vs-observable/
 
 --Various ways of Cross Component Communication
 https://medium.com/@manivel45/event-emitter-vs-subject-cross-component-communication-8934376605e1
+
+----Reactive Forms Approach
+https://stackoverflow.com/questions/45255218/angular2-4-what-for-should-i-use-reactive-forms-when-there-is-built-in-formsmod
+
+https://netbasal.com/why-its-time-to-say-goodbye-to-angular-template-driven-forms-350c11d004b
+
+https://www.gistia.com/angular-reactive-forms/
+
+https://medium.com/@steffen.klepke/angular-template-driven-forms-and-reactive-forms-in-a-nutshell-f09f3b2fb2dc
 
 
