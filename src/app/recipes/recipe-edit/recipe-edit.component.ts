@@ -6,6 +6,7 @@ import { RecipeService } from '../recipes.service';
 @Component({
   selector: '',
   templateUrl: './recipe-edit.component.html',
+  styleUrls:['./recipe-edit.component.css']
   })
 export class RecipeEditComponent implements OnInit {
 
@@ -38,18 +39,53 @@ export class RecipeEditComponent implements OnInit {
      recipeName = recipe.name;
      recipeImagepath = recipe.imagePath;
      recipeDescription = recipe.description;
+     if(recipe['ingredients']){
+       for (let ingredient of recipe.ingredients)
+       {
+         recipeIngredients.push(
+         new FormGroup({
+          'name' : new FormControl(ingredient.name,Validators.required),
+          'amount' : new FormControl(ingredient.amount,
+                                     [
+                                       Validators.required,
+                                       Validators.pattern(/^[1-9]+[0-9]*$/)
+                                     ])
+                     })
+         );
+       }       
+      }
     }
-
     this.recipeForm = new FormGroup({      
       'name' : new FormControl(recipeName, Validators.required),
       'imagePath': new FormControl(recipeImagepath, Validators.required),
       'description': new FormControl(recipeDescription, Validators.required),
-      'ingrededients': new FormControl(recipeIngredients)
+      'recipeIngredients': recipeIngredients
     });
+  }
+
+  onAddIngredient()
+  {
+    (<FormArray> this.recipeForm.get('recipeIngredients')).push(
+      new FormGroup({
+        'name' : new FormControl(null,Validators.required),
+        'amount' : new FormControl(null,[
+                                   Validators.required,
+                                   Validators.pattern(/^[1-9]+[0-9]*$/)
+                                  ])
+      })
+    );
   }
 
   onSubmit()
   {
-    console.log(this.recipeForm);
+    if(this.editMode)
+    {
+      this.recipeService.updateRecipe(this.id,this.recipeForm.value);
+    }
+    else
+    {
+      this.recipeService.addRecipe(this.recipeForm.value);
+    }
+    
   }
 }
