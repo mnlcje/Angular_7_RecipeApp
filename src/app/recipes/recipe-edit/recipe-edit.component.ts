@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, Params } from '@angular/router';
+import { ActivatedRoute, Params, Router } from '@angular/router';
 import { FormGroup, FormArray, FormControl, Validators } from '@angular/forms';
 import { RecipeService } from '../recipes.service';
 
@@ -15,7 +15,8 @@ export class RecipeEditComponent implements OnInit {
   recipeForm : FormGroup;
 
   constructor(private route: ActivatedRoute,
-              private recipeService : RecipeService
+              private recipeService : RecipeService,
+              private router: Router
              ) { }
 
   ngOnInit() {
@@ -59,13 +60,13 @@ export class RecipeEditComponent implements OnInit {
       'name' : new FormControl(recipeName, Validators.required),
       'imagePath': new FormControl(recipeImagepath, Validators.required),
       'description': new FormControl(recipeDescription, Validators.required),
-      'recipeIngredients': recipeIngredients
+      'ingredients': recipeIngredients
     });
   }
 
   onAddIngredient()
   {
-    (<FormArray> this.recipeForm.get('recipeIngredients')).push(
+    (<FormArray> this.recipeForm.get('ingredients')).push(
       new FormGroup({
         'name' : new FormControl(null,Validators.required),
         'amount' : new FormControl(null,[
@@ -85,7 +86,16 @@ export class RecipeEditComponent implements OnInit {
     else
     {
       this.recipeService.addRecipe(this.recipeForm.value);
-    }
+    } 
     
+    this.onCancel();
+  }
+
+  onCancel()
+  {
+    //Go one level up from current route
+    //Cancel New : Recipe Selection Page
+    //Cancel Edit : Recipe Details Page
+    this.router.navigate(['../'],{relativeTo: this.route});
   }
 }

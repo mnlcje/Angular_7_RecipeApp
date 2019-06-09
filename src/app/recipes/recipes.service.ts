@@ -35,7 +35,6 @@ export class RecipeService
     
     getRecipes()
     {
-        console.log('called getRecipes');
         //Return a copy of the recipe array
         return this.recipes.slice();        
     }
@@ -60,6 +59,12 @@ export class RecipeService
     addIngredientsToShoppingList(ingredients:Ingredient[])
     {
         this.shoppingListService.addIngreddients(ingredients);
+    }
+
+    deleteRecipe(index:number)
+    {
+        this.recipes.splice(index,1);
+        this.recipeChanged.next(this.recipes.slice());
     }
 
 }
