@@ -11,7 +11,9 @@ export class RecipeService
 
     recipeChanged = new Subject<Recipe[]>();
     
-    private recipes:Recipe[] = [
+    private recipes:Recipe[] = [] ;
+    
+    /*[
         new Recipe
         ( 'Tasty Schnitzel',
         'A super-tasty Schnitzel - just awesome!',
@@ -32,7 +34,8 @@ export class RecipeService
         ]            
         )
     ];
-    
+    */
+   
     getRecipes()
     {
         //Return a copy of the recipe array
@@ -64,6 +67,12 @@ export class RecipeService
     deleteRecipe(index:number)
     {
         this.recipes.splice(index,1);
+        this.recipeChanged.next(this.recipes.slice());
+    }
+
+    setRecipe(recipes:Recipe[])
+    {
+        this.recipes = recipes;
         this.recipeChanged.next(this.recipes.slice());
     }
 
