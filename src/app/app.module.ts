@@ -18,10 +18,12 @@ import { RecipeStartComponent } from './recipes/recipe-start/recipe-start.compon
 import { RecipeEditComponent } from './recipes/recipe-edit/recipe-edit.component';
 import { RecipeService } from './recipes/recipes.service';
 import { DataStorageService } from './shared/data-storage.service';
+import { AuthComponent } from './auth/auth.component';
 
 @NgModule({
   declarations: [
     AppComponent,
+    AuthComponent,
     HeaderComponent,
     RecipesComponent,
     RecipeStartComponent,

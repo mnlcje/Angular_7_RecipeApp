@@ -1,13 +1,29 @@
-import {Component,EventEmitter, Output} from '@angular/core';
+import {Component,EventEmitter, Output, OnInit, OnDestroy} from '@angular/core';
 import { DataStorageService } from '../shared/data-storage.service';
+import { Recipe } from '../recipes/recipes.model';
+import { Subscription } from 'rxjs';
+import { RecipeService } from '../recipes/recipes.service';
 
 @Component({
     templateUrl:'./header.component.html',
     selector:'app-header'
 })
-export class HeaderComponent
+export class HeaderComponent implements OnInit,OnDestroy
 {
-    constructor(private dataStorageService : DataStorageService){}
+    recipes:Recipe[];
+    recipeChangeSubscription : Subscription;
+    
+    constructor(private recipeService : RecipeService, private dataStorageService : DataStorageService){}
+
+    
+    ngOnInit(){
+        this.recipeChangeSubscription = this.recipeService.recipeChanged.subscribe(
+                                    (recipes:Recipe[])=>{
+                                        this.recipes = recipes
+                                    }
+        );
+
+    }
 
     onSaveData()
     {
@@ -16,7 +32,13 @@ export class HeaderComponent
 
     onFetchData()
     {
-        this.dataStorageService.fetchRecipes();
+        this.dataStorageService.fetchRecipes().subscribe();
     }
+
+    ngOnDestroy()
+    {
+        this.recipeChangeSubscription.unsubscribe();
+    }
+
     
 }

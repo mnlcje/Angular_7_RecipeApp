@@ -13,7 +13,10 @@ export class RecipeService
     
     private recipes:Recipe[] = [] ;
     
-    /*[
+    /*
+    private recipes:Recipe[] =
+    
+    [
         new Recipe
         ( 'Tasty Schnitzel',
         'A super-tasty Schnitzel - just awesome!',
@@ -72,6 +75,7 @@ export class RecipeService
 
     setRecipe(recipes:Recipe[])
     {
+        console.log(recipes);
         this.recipes = recipes;
         this.recipeChanged.next(this.recipes.slice());
     }
