@@ -46,4 +46,9 @@ https://www.gistia.com/angular-reactive-forms/
 
 https://medium.com/@steffen.klepke/angular-template-driven-forms-and-reactive-forms-in-a-nutshell-f09f3b2fb2dc
 
+---RxJS - BehaviorSubject
+https://medium.com/@luukgruijs/understanding-rxjs-behaviorsubject-replaysubject-and-asyncsubject-8cc061f1cfc0
+
+---RxJS - exhaustMap
+https://www.learnrxjs.io/operators/transformation/exhaustmap.html
 
