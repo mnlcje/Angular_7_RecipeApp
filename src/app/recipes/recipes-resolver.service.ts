@@ -9,6 +9,7 @@ export class RecipeResolverService implements Resolve<any>
     constructor(private dataStorageService: DataStorageService){}
     
     resolve(route: ActivatedRouteSnapshot):Observable<any> {
+          console.log('called Resolver');
             return this.dataStorageService.fetchRecipes();
       }
     

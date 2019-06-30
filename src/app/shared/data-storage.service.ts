@@ -20,40 +20,36 @@ export class DataStorageService
     storeRecipes()
     {
         const recipes = this.recipeService.getRecipes();
+        console.log(`updated recipes:${recipes[0].name}`);
         this.httpC.put('https://ng-recipe-book-63ace.firebaseio.com/recipes.json',
         recipes
         )
         .subscribe(response =>{
-            console.log(response);
         });
     }
 
     fetchRecipes()
     {    
-        return this.authService.user.pipe(
-        take(1),
-        //Chapter-20 ; Sec-298
-        exhaustMap(user => {
-            return this.httpC.get<Recipe[]>
+       return this.httpC.get<Recipe[]>
              (
-              'https://ng-recipe-book-63ace.firebaseio.com/recipes.json',
-              {
-                  params : new HttpParams().set('auth', user.token)
-              }
-             );
-            }),
-            map(response => {
+              'https://ng-recipe-book-63ace.firebaseio.com/recipes.json'
+             )
+            .pipe(
+                map(response => {
+                    console.log(`Fetch Recipe Response:${response}`);
                 return response.map(response => {
                     return {
                         ...response,
                         ingredients: response.ingredients ? response.ingredients : []                                   
                     };
                 });
-            }),
-            tap(response => {
-                this.recipeService.setRecipe(response);
-            })
+              }),
+              tap(response => {
+                this.recipeService.setRecipe(response);                
+                 })
           );        
        }
+
+
 
 }

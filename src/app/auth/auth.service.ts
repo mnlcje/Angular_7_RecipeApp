@@ -18,8 +18,7 @@ export interface AuthResponseData {
 
 @Injectable({providedIn:'root'})
 export class AuthService
-{
-  
+{  
     user = new BehaviorSubject<User>(null);
 
     constructor(private httpC : HttpClient){}
@@ -71,6 +70,11 @@ export class AuthService
             );
           })
         )
+      }
+
+      logout()
+      {
+        this.user.next(null);
       }
       
       private handleError(errorRes : HttpErrorResponse)

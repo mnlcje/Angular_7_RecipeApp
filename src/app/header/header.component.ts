@@ -4,6 +4,7 @@ import { Recipe } from '../recipes/recipes.model';
 import { Subscription } from 'rxjs';
 import { RecipeService } from '../recipes/recipes.service';
 import { AuthService } from '../auth/auth.service';
+import { Router } from '@angular/router';
 
 @Component({
     templateUrl:'./header.component.html',
@@ -18,7 +19,8 @@ export class HeaderComponent implements OnInit,OnDestroy
 
     constructor(private recipeService : RecipeService, 
         private dataStorageService : DataStorageService,
-        private authService : AuthService
+        private authService : AuthService,
+        private router : Router
         ){}
 
     
@@ -51,6 +53,12 @@ export class HeaderComponent implements OnInit,OnDestroy
     {
         this.recipeChangeSubscription.unsubscribe();
         this.userSubscription.unsubscribe();
+    }
+
+    onLogOut()
+    {
+        this.authService.logout();
+        this.router.navigate(['/auth']);        
     }
 
     
