@@ -49,6 +49,9 @@ https://medium.com/@steffen.klepke/angular-template-driven-forms-and-reactive-fo
 ---RxJS - BehaviorSubject
 https://medium.com/@luukgruijs/understanding-rxjs-behaviorsubject-replaysubject-and-asyncsubject-8cc061f1cfc0
 
+https://stackoverflow.com/questions/39494058/behaviorsubject-vs-observable
+
+
 ---RxJS - exhaustMap
 https://www.learnrxjs.io/operators/transformation/exhaustmap.html
 
