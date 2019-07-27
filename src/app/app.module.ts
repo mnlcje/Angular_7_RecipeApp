@@ -9,10 +9,7 @@ import { AppRoutingModule } from './app.routing.module';
 import { RecipeService } from './recipes/recipes.service';
 import { DataStorageService } from './shared/data-storage.service';
 import { AuthInterceptorService } from './auth/auth.interceptor.service';
-import { RecipeModule } from './recipes/recipe.module';
-import { ShoppingListModule } from './shopping-list/shopping-list.module';
 import { SharedModule } from './shared/shared.module';
-import { AuthModule } from './auth/auth.module';
 
 @NgModule({
   declarations: [
@@ -23,9 +20,6 @@ import { AuthModule } from './auth/auth.module';
     BrowserModule,
     HttpClientModule,
     SharedModule,
-    AuthModule,
-    RecipeModule,
-    ShoppingListModule,
     AppRoutingModule
   ],
   providers: [
