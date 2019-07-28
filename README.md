@@ -31,6 +31,10 @@ To get more help on the Angular CLI use `ng help` or go check out the [Angular C
 --type ng new in node commmand prompt to create project in ng7
 
 
+
+---ViewChild and ContentChild
+https://www.infragistics.com/community/blogs/b/infragistics/posts/simplifying-viewchild-nad-contentchild-in-angular
+
 --Subject and observables
 https://javascript.tutorialhorizon.com/2017/03/23/rxjs-subject-vs-observable/
 
@@ -54,4 +58,12 @@ https://stackoverflow.com/questions/39494058/behaviorsubject-vs-observable
 
 ---RxJS - exhaustMap
 https://www.learnrxjs.io/operators/transformation/exhaustmap.html
+
+----Application State Management Using Redux(open-source JavaScript library for managing application state.)
+https://hackernoon.com/redux-for-dummies-867f7aff7a2f
+
+https://www.freecodecamp.org/news/understanding-redux-the-worlds-easiest-guide-to-beginning-redux-c695f45546f6/
+
+--why-are-reduxs-state-functions-called-reducers
+https://stackoverflow.com/questions/34376023/why-are-reduxs-state-functions-called-reducers
 
